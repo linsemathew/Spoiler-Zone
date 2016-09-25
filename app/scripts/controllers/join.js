@@ -8,10 +8,13 @@
  * Controller of the spoilerZoneApp
  */
 angular.module('spoilerZoneApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('JoinCtrl', [ '$scope', '$rootScope', '$location', 'Pubnub', function ($scope, $rootScope, $location, Pubnub) {
+  	$scope.data = {
+  		username: 'User_' +Math.floor(Math.random() * 1000)
+  	}
+
+
+  	$scope.join = function(){
+  		console.log("joining")
+  	};
+  }]);
