@@ -1,54 +1,55 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Spoiler Zone</title>
-    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body ng-app="spoilerZoneApp">
+    <!-- endbuild -->
+</head>
+
+<body ng-app="spoilerZoneApp">
     <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#/">Spoiler  Zone</a>
-          </div>
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/">Spoiler Zone</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <div class="container">
-      <div ng-view=""></div>
+        <div ng-view=""></div>
     </div>
 
     <div class="footer">
-      <div class="container">
-        <p>Spoiler Zone Copyright &copy; 2016
-      </div>
+        <div class="container">
+            <p>Spoiler Zone Copyright &copy; 2016</p>
+        </div>
     </div>
 
-    <script src="http://cdn.pubnub.com/pubnub-3.15.2.min.js"></script>
-    <!-- Instantiate PubNub -->
-    <script type="text/javascript">
-        var Pubnub = PUBNUB.init({
-            publish_key: 'pub-c-226a2e6e-e87c-4d8c-a94a-5f1ef00e3f95',
-            subscribe_key: 'sub-c-5281d462-64df-11e6-a5da-0619f8945a4f'
-        });
-    </script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/pubnub-angular/dist/pubnub-angular.js"></script>
-
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/join.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"></script>
+    
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/join.js"></script>
+    <!-- endbuild -->
 </body>
+
 </html>

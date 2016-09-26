@@ -8,12 +8,12 @@
  * Controller of the spoilerZoneApp
  */
 angular.module('spoilerZoneApp')
-	.controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Pubnub', function ($scope, rootScope, location, Pubnub) {
+	.controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Pubnub', function ($scope, $rootScope, $location, Pubnub) {
 	  		var _ref;
 
-	  		if(!Pubnub.initialized()){
-	  			$location.path('/join');
-	  		}
+	  		// if(!Pubnub.initialized()){
+	  		// 	$location.path('/join');
+	  		// }
 
 	  		$scope.controlChannel = '__controlChannel';
 	  		$scope.channels = []
@@ -44,14 +44,16 @@ angular.module('spoilerZoneApp')
 
 	  		$scope.subscribe = function(channel){
 	  			var _ref;
-	  			if (channel == $scope.selectedChannel){
+	  			if (channel === $scope.selectedChannel){
 	  				return;
 	  			}
 	  			if($scope.selectedChannel){
 	  				Pubnub.ngUnsubscribe({
 	  					channel: $scope.selectedChannel
-	  				})
+	  				});
 	  			}
+	  			$scope.selectedChannel = channel;
+	  			$scope.messages = ['Welcome to ' +channel]
 	  			Pubnub.ngSubscribe({
 	  				channel: $scope.selectedChannel,
 	  				state: {
