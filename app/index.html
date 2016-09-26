@@ -9,22 +9,23 @@
 </head>
 
 <body ng-app="spoilerZoneApp">
-    <div class="header">
+    <div id="wrapper">
+        <div class="header">
             <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#/">Spoiler Zone <br><small>Discuss shows live.</small></a>
-                </div>
+                <h1><a class="navbar-brand" href="#/">Spoiler Zone</a></h1>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div ng-view=""></div>
-    </div>
+        <div id="content"> 
+            <div class="container">
+                <div ng-view=""></div>
+            </div>
+        </div>
 
-    <div class="footer">
-        <div class="container">
-            <p>Spoiler Zone Copyright &copy; 2016</p>
+        <div class="footer">
+            <div class="container">
+                <p>Spoiler Zone Copyright &copy; 2016</p>
+            </div>
         </div>
     </div>
 

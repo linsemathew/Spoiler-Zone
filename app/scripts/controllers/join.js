@@ -22,8 +22,8 @@ angular.module('spoilerZoneApp')
         $rootScope.data.uuid = Math.floor(Math.random() * 1000000) + '__' +$scope.data.username;
         
         PubNub.init({
-            subscribe_key: 'sub-c-dcfbfba2-82fa-11e6-afcd-02ee2ddab7fe',
-            publish_key:'pub-c-a0c4eb4c-d737-42c5-b58e-d01c1c177ae4',
+            subscribe_key: 'sub-c-fa70425e-8432-11e6-8c91-02ee2ddab7fe',
+            publish_key:'pub-c-33f074fd-ee9d-4be0-8bee-cf3ef4107019',
             uuid:$rootScope.data.uuid
         });
         
