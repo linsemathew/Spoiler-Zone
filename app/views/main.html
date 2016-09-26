@@ -51,7 +51,7 @@
     <br>
     <div class="well chatbox" id="chat_history">
       <ul class="list-unstyled">
-        <li ng-repeat="message in messages">
+        <li ng-repeat="message in messages track by $index">
           <i class="fa fa-comment"></i>
           &nbsp;
           {{message}}
