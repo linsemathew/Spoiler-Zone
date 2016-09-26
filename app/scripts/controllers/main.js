@@ -8,12 +8,12 @@
  * Controller of the spoilerZoneApp
  */
 angular.module('spoilerZoneApp')
-	.controller('MainCtrl', ['$scope', '$rootScope', '$location', 'Pubnub', function ($scope, $rootScope, $location, Pubnub) {
-	  		var _ref;
+	.controller('MainCtrl', ['$scope', '$rootScope', '$location', 'PubNub', function ($scope, $rootScope, $location, PubNub) {
+ 			var _ref;
 
-	  		// if(!Pubnub.initialized()){
-	  		// 	$location.path('/join');
-	  		// }
+	  		if(!PubNub.initialized()){
+	  			$location.path('/join');
+	  		}
 
 	  		$scope.controlChannel = '__controlChannel';
 	  		$scope.channels = []
@@ -32,7 +32,7 @@ angular.module('spoilerZoneApp')
 	  				read: true,
 	  				write: true
 	  			})
-	  			Pubnub.ngPublish({
+	  			PubNub.ngPublish({
 	  				channel: $scope.controlChannel,
 	  				message: channel
 	  			});
@@ -48,13 +48,13 @@ angular.module('spoilerZoneApp')
 	  				return;
 	  			}
 	  			if($scope.selectedChannel){
-	  				Pubnub.ngUnsubscribe({
+	  				PubNub.ngUnsubscribe({
 	  					channel: $scope.selectedChannel
 	  				});
 	  			}
 	  			$scope.selectedChannel = channel;
 	  			$scope.messages = ['Welcome to ' +channel]
-	  			Pubnub.ngSubscribe({
+	  			PubNub.ngSubscribe({
 	  				channel: $scope.selectedChannel,
 	  				state: {
 	  					"city": ((_ref = $rootScope.data) != null ? _ref.city : void 0) || 'unknown'
@@ -63,12 +63,12 @@ angular.module('spoilerZoneApp')
 	  		}
 
 	  		// Display users
-	        $rootScope.$on(Pubnub.ngPrsEv($scope.selectedChannel), function (event, payload) {
+	        $rootScope.$on(PubNub.ngPrsEv($scope.selectedChannel), function (event, payload) {
 	            return $scope.$apply(function () {
 	                var newData, userData;
-	                userData = Pubnub.ngPresenceData($scope.selectedChannel);
+	                userData = PubNub.ngPresenceData($scope.selectedChannel);
 	                newData = {};
-	                $scope.users = Pubnub.map(Pubnub.ngListPresence($scope.selectedChannel), function (x) {
+	                $scope.users = PubNub.map(PubNub.ngListPresence($scope.selectedChannel), function (x) {
 	                    var newX;
 	                    newX = x;
 	                    if (x.replace) {
@@ -85,12 +85,12 @@ angular.module('spoilerZoneApp')
 	        });
 
 	        // Retrieve current users
-	        Pubnub.ngHereNow({
+	        PubNub.ngHereNow({
 	            channel: $scope.selectedChannel
 	        });
 
 	        // Display messages in the window
-	        $rootScope.$on(Pubnub.ngMsgEv($scope.selectedChannel), function (ngEvent, payload) {
+	        $rootScope.$on(PubNub.ngMsgEv($scope.selectedChannel), function (ngEvent, payload) {
 	            var msg;
 	            msg = payload.message.user ? "[" + payload.message.user + "] " + payload.message.text : "[unknown] " + payload.message;
 	            return $scope.$apply(function () {
@@ -99,21 +99,21 @@ angular.module('spoilerZoneApp')
 	        });
 
 			// Previous messages on a channel     
-	        return Pubnub.ngHistory({
+	        return PubNub.ngHistory({
 	            channel: $scope.selectedChannel,
 	            auth_key: $scope.authKey,
 	            count: 500
 	            });
 
 	        $scope.subscribe = function () {
-	            Pubnub.ngSubscribe({
+	            PubNub.ngSubscribe({
 	                channel: $scope.controlChannel
 	            });
 	        }
 
 
 	        $scope.message = function(){
-		        $rootScope.$on(Pubnub.ngMsgEv($scope.controlChannel), function (ngEvent, payload) {
+		        $rootScope.$on(PubNub.ngMsgEv($scope.controlChannel), function (ngEvent, payload) {
 		            return $scope.$apply(function () {
 		                if ($scope.channels.indexOf(payload.message) < 0) {
 		                    return $scope.channels.push(payload.message);
@@ -123,7 +123,7 @@ angular.module('spoilerZoneApp')
 	        };
 
 	        $scope.ngHistory = function(){
-		        Pubnub.ngHistory({
+		        PubNub.ngHistory({
 		            channel: $scope.controlChannel,
 		            count: 500
 		        });
