@@ -1,4 +1,4 @@
-<h4>Welcome {{data.username}}, click a show below to discuss! [<a href="#/join">Sign Out</a>]</h4>
+<h4 class="welcome">Welcome {{data.username}}, click a show below to discuss! [<a href="#/join">Sign Out</a>]</h4>
 
 <ul class="list-unstyled list-inline">
   <li class="roomlabel" ng-repeat="channel in channels">
@@ -15,7 +15,7 @@
 
   <div ng-show="showCreate">
     <form ng-submit="createChannel()">
-      <h6>Pick A New Show</h6>
+      <h6>Create A New Room</h6>
       <div class="input-group">
         <input class="input-sm form-control" ng-model="newChannel" plaseholder="Show Name" type="text">
         <span class="input-group-btn">
