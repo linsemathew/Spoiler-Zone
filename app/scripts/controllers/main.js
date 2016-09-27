@@ -40,11 +40,9 @@ angular.module('spoilerZoneApp')
  			var i = 0;
  			var showTitle = "";
  			for (i; i < words.length; i++){
- 				showTitle += words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
- 				if (i !== 0 || !(i >= (words.length - 1))){
- 					showTitle += " "
- 				}
+ 				showTitle += words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase() + " ";
  			};
+ 			showTitle = showTitle.slice(0, -1)
  			return showTitle;
 		};
 
@@ -80,7 +78,7 @@ angular.module('spoilerZoneApp')
 			  	return setTimeout(function() {
 			  		$scope.subscribe(channel);
 			  		return $scope.showCreate = false;
-			  	}, 100);
+			  	}, 50);
 			} else {
 				$scope.errorMessage = "Please enter a valid show."
 				}
