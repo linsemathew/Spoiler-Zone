@@ -83,7 +83,7 @@ angular.module('spoilerZoneApp')
 		    }
 
 	    	$scope.selectedChannel = channel;
-	    	$scope.messages = [channel + " topic created."];
+	    	$scope.messages = [channel + " room created."];
 
 	    	PubNub.ngSubscribe({
 	    		channel: $scope.selectedChannel,
@@ -148,12 +148,12 @@ angular.module('spoilerZoneApp')
 	  		});
 	    });
 
-		return PubNub.ngHistory({
+		PubNub.ngHistory({
 	    	channel: $scope.controlChannel,
 	    	count: 500
 	  	});
 
-		$scope.channels = 'WaitingRoom';
+		$scope.newChannel = 'Lobby';
 		return $scope.createChannel();
 
 }]);
