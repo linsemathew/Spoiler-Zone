@@ -1,12 +1,28 @@
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
-  color: #000;
+  color: #fff;
   padding: 0.2em 0;
+}
+
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+#wrapper {
+  min-height:100%;
+  position:relative;
 }
 
 body {
   padding: 0;
+  background-color: #362449;
+}
+
+#content {
+  padding-bottom:100px; /* Height of the footer element */
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -21,19 +37,48 @@ body {
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
+  background-color: #251933;
+  height: 91px;
+  text-align: center;
 }
 /* Make the masthead heading the same height as the navigation */
-.header h3 {
+.header h2 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
+  color: #ccc;
+}
+
+.container2{
+  width: 95%;
+  height: 100%;
+  margin-top: 85px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  opacity: 50%;
+  padding: 10px;
+  border: 5px solid #251933;
+  border-radius: 20px;
+}
+
+.col-md-2{
+  overflow: auto;
 }
 
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
+  color: #ccc;
+  border-top: 1px solid #131725;
+  height: 50px;
+  width: 100%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  text-align: center;
+  background-color: #251933;
   border-top: 1px solid #e5e5e5;
 }
 
@@ -49,6 +94,19 @@ body {
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
+  border-radius: 25px;
+}
+
+.btn-info {
+  border-radius: 10px;
+}
+
+.list-inline, .welcome{
+  text-align: center;
+}
+
+.welcome{
+  padding-bottom: 10px;
 }
 
 /* Supporting marketing content */
