@@ -143,6 +143,13 @@ body {
 }
 
 @media only screen and (max-width: 991px) {
+  .col-md-2 ul.list-unstyled li {
+    display: inline-block;
+  }
   .col-md-2 {
-    display: none;
+    max-height: 50px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    max-width: 89%;
+  }
 }
