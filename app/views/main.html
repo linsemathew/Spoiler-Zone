@@ -1,7 +1,7 @@
-<h4 class="welcome">Welcome {{data.username}}, click a show below to discuss! [<a href="#/join">Sign Out</a>]</h4>
+<h4 class="welcome">Welcome {{data.username}}! Click a show below to discuss it! [<a href="#/join">Sign Out</a>]</h4>
 
 <ul class="list-unstyled list-inline">
-  <li class="roomlabel" ng-repeat="channel in channels" track by $index">
+  <li class="roomlabel" ng-repeat="channel in channels track by $index">
     <a class="bt btn-info" href='' ng-class="{'label-default': user != data.username, 'label-default': (channel != selectedChannel), 'label-success':(channel == selectedChannel)}" ng-click='subscribe(channel)'>
       <i clas='fa' ng-class="{'fa-spin':(channel == selectedChannel), 'fa-spinner':(channel == selectedChannel), 'fa-comments':(channel != selectedChannel)}"></i>
       {{channel}}
@@ -22,6 +22,7 @@
           <input class="input-sm btn btn-default" type="submit" value="create">
         </span>
       </div>
+      {{ errorMessage }}
       <br>
       <br>
     </form>
@@ -33,7 +34,7 @@
   <div class="col-md-2">
     <small class="marker">Users In Room</small>
     <ul class="list-unstyled">
-      <li ng-repeat="user in users" track by $index">
+      <li ng-repeat="user in users track by $index">
         <span class='label btn-mini userlabel' ng-class="{'label-default': user != data.username, 'label-success': (user == data.username)}" title='(Location:{{userdata[user].city || "unknown"}})'>
           <i class="fa fa-user"></i>
           {{user}}
@@ -51,7 +52,7 @@
     <br>
     <div class="well chatbox" id="chat_history">
       <ul class="list-unstyled">
-        <li ng-repeat="message in messages" track by $index">
+        <li ng-repeat="message in messages track by $index">
           <i class="fa fa-comment"></i>
           &nbsp;
           {{message}}

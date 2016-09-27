@@ -18,6 +18,7 @@ angular.module('spoilerZoneApp')
 	 	$scope.controlChannel = '__controlchannel';
 	 	$scope.channels = [];
 
+	 	//Publish a message
  		$scope.publish = function() {
  			if (!$scope.selectedChannel) {
  				return;
@@ -34,40 +35,56 @@ angular.module('spoilerZoneApp')
  			return $scope.newMessage = '';
  		};
 
-		$scope.createChannel = function() {
-	  		var channel;
-	  		channel = $scope.newChannel;
-	  		$scope.newChannel = '';
-
-	  		PubNub.ngGrant( {
-		  		channel: channel,
-		  		read: true,
-		  		write: true,
-		  		callback: function(){
-		  			return console.log(channel + 'All Set', arguments);
-		  		}
-	  		});
-
-		  	PubNub.ngGrant( {
-		  		channel: channel + '-pnpres',
-		  		read: true,
-		  		write: false,
-		  		callback: function(){
-		  			return console.log(channel + 'Presence All Set', arguments);
-		  		}
-	  		});
-
-	  		PubNub.ngPublish({
-		  		channel: $scope.controlChannel,
-		  		message: channel
-		  	});
-
-	  		return setTimeout(function() {
-	  			$scope.subscribe(channel);
-	  			return $scope.showCreate = false;
-	  		}, 100);
+ 		String.prototype.capitalize = function() {
+ 			var words = this.split(" ");
+ 			var i = 0;
+ 			var showTitle = "";
+ 			for (i; i < words.length; i++){
+ 				showTitle += words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+ 				if (i !== 0 || !(i >= (words.length - 1))){
+ 					showTitle += " "
+ 				}
+ 			};
+ 			return showTitle;
 		};
 
+		$scope.createChannel = function() {
+			if ($scope.newChannel){ 
+			  	var channel;
+			  	channel = $scope.newChannel.capitalize();
+				$scope.newChannel = '';
+
+		  		PubNub.ngGrant( {
+			  		channel: channel,
+			  		read: true,
+			  		write: true,
+			  		callback: function(){
+			  			return console.log(channel + 'All Set', arguments);				
+			  		}
+			  	});
+
+			  	PubNub.ngGrant( {
+			  		channel: channel + '-pnpres',
+			  		read: true,
+			  		write: false,
+			  		callback: function(){
+				  		return console.log(channel + 'Presence All Set', arguments);
+				  	}
+			  	});
+
+				PubNub.ngPublish({
+			  		channel: $scope.controlChannel,
+			  		message: channel
+			  	});
+
+			  	return setTimeout(function() {
+			  		$scope.subscribe(channel);
+			  		return $scope.showCreate = false;
+			  	}, 100);
+			} else {
+				$scope.errorMessage = "Please enter a valid show."
+				}
+		};
 
 	    $scope.subscribe = function(channel) {
 		    var _ref;
@@ -83,7 +100,7 @@ angular.module('spoilerZoneApp')
 		    }
 
 	    	$scope.selectedChannel = channel;
-	    	$scope.messages = [channel + " room created."];
+	    	$scope.messages = ["You are in the " + "'" + channel +"'" + " room."];
 
 	    	PubNub.ngSubscribe({
 	    		channel: $scope.selectedChannel,
@@ -153,6 +170,8 @@ angular.module('spoilerZoneApp')
 	    	count: 500
 	  	});
 
+
+		// Default room when a user joins
 		$scope.newChannel = 'Lobby';
 		return $scope.createChannel();
 
