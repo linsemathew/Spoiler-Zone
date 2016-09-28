@@ -19,6 +19,7 @@ body {
 body {
   padding: 0;
   background-color: #362449;
+  min-width: 330px;
 }
 
 #content {
